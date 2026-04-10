@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuki Seki | Portfolio</title>
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --clr-bg:      #0f0f13;
+      --clr-surface: #1a1a24;
+      --clr-border:  #2e2e40;
+      --clr-accent:  #7c6af7;
+      --clr-accent2: #5ec4e8;
+      --clr-text:    #e4e4f0;
+      --clr-muted:   #8888aa;
+      --radius:      12px;
+      --transition:  0.3s ease;
+      --font:        'Segoe UI', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    h1, h2, h3 { line-height: 1.2; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    h3 { font-size: 1.1rem; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--clr-border);
+    }
+    section { padding: 6rem 0; }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15, 15, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--clr-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--clr-text); }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+    }
+    .hero-content { max-width: 640px; }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--clr-muted);
+      margin-bottom: 2.4rem;
+      max-width: 480px;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--clr-accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #6b59e6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 106, 247, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--clr-text);
+      border: 1px solid var(--clr-border);
+    }
+    .btn-outline:hover {
+      border-color: var(--clr-accent);
+      color: var(--clr-accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-blob {
+      position: absolute;
+      top: 10%; right: 5%;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-24px); }
+    }
+
+    /* ─── Skills ─── */
+    #skills { background: var(--clr-surface); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.2rem 0.75rem;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+    }
+    .skill-card:hover {
+      border-color: var(--clr-accent);
+      transform: translateY(-4px);
+    }
+    .skill-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+    /* ─── Projects ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;               /* ← サムネイルが角丸に沿うよう */
+      transition: all var(--transition);
+    }
+    .project-card:hover {
+      border-color: var(--clr-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    /* ── サムネイルエリア ── */
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;           /* 横長の比率 */
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e1b3a 0%, #12293a 100%); /* 画像がない場合のフォールバック */
+      position: relative;
+    }
+    /* ── サムネイル内画像 ── */
+    .project-thumb img {
+      width: 100%;
+      height: auto;           /* ← coverをやめて自然な高さに */
+      display: block;
+      transform: translateY(0);
+      transition: transform 0.5s ease; /* mouseleave 用の戻りアニメ */
+    }
+    /* ↓ ホバー時のscale拡大は削除（JSで代替） */
+    /* .project-card:hover .project-thumb img { transform: scale(1.04); } を消す */
+    .project-card:hover .project-thumb img {
+      transform: scale(1.04);         /* ホバーで少し拡大 */
+    }
+
+    /* ── ロゴオーバーレイ（サムネイル左下） ── */
+    .project-logo {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(15, 15, 19, 0.75);
+      backdrop-filter: blur(6px);
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project-logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    /* ── カード本文エリア ── */
+    .project-body {
+      padding: 1.4rem 1.6rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+    .project-card h3 { font-size: 1.05rem; }
+    .project-card p  { font-size: 0.88rem; color: var(--clr-muted); flex: 1; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(124,106,247,0.12);
+      color: var(--clr-accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(124,106,247,0.25);
+    }
+
+    /* ─── About ─── */
+    #about { background: var(--clr-surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .about-text p { color: var(--clr-muted); margin-bottom: 1rem; }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .stat-item h3 { font-size: 1.8rem; color: var(--clr-accent); }
+    .stat-item p  { font-size: 0.85rem; color: var(--clr-muted); }
+
+    /* ─── Contact ─── */
+    .contact-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-card p { color: var(--clr-muted); margin: 1rem 0 2rem; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      border: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all var(--transition);
+    }
+    .social-link:hover {
+      border-color: var(--clr-accent);
+      background: rgba(124,106,247,0.1);
+      transform: translateY(-3px);
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--clr-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--clr-border);
+    }
+
+    /* ─── Scroll Animations ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-avatar { width: 140px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo gradient-text">YN</a>
+      <ul class="nav-links">
+        <li><a href="#skills">スキル</a></li>
+        <li><a href="#projects">制作物</a></li>
+        <li><a href="#about">自己紹介</a></li>
+        <li><a href="#contact">連絡先</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="hero-blob"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-label">👋 Welcome to my portfolio</span>
+        <h1>Hi, I'm <br><span class="gradient-text">Yuki Seki</span></h1>
+        <p>フロントエンドエンジニア。
+           見やすく、使いやすいプロダクトをつくることを心がけています。</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">制作物を見る →</a>
+          <a href="#contact" class="btn btn-outline">連絡する</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>スキル</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card fade-in"><div class="skill-icon">🌐</div>HTML / CSS</div>
+        <div class="skill-card fade-in"><div class="skill-icon">✨</div>JavaScript</div>
+        <div class="skill-card fade-in"><div class="skill-icon">🖥️</div>PHP</div>
+        <div class="skill-card fade-in"><div class="skill-icon">🐍</div>WordPress</div>
+        <div class="skill-card fade-in"><div class="skill-icon">🗄️</div>SQL</div>
+        <div class="skill-card fade-in"><div class="skill-icon">🐙</div>Git</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>制作実績</h2>
+      </div>
+      <div class="projects-grid">
+
+        <a class="project-card fade-in" href="https://golden-mission.jp/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/gm-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/gm-pc.png" alt="GOLDEN MISSION スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-gm.avif" alt="GOLDEN MISSION">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>GOLDEN MISSION</h3>
+            <p>Shopifyテーマを活用し、プロテイン販売に適したレイアウトに作成したECサイトです。</p>
+            <div class="tags">
+              <span class="tag">Shopify</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Liquid</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://hcp-inc.jp/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/hcp-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/hcp-pc.png" alt="HCP スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-hcp.png" alt="HCP">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>HCP</h3>
+            <p>必要なものだけを残し、シンプルに設計したコーポレートサイト</p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://studio-bars.jp/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/bars-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/bars-pc.png" alt="BARS DANCE STUDIO スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-bars.svg" alt="BARS DANCE STUDIO">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>BARS DANCE STUDIO</h3>
+            <p>お客様に必要な情報を見やすいようにまとめたダンススタジオのWEBサイト。</p>
+            <div class="tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://36chamberz.jp/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/chamberz-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/chamberz-pc.png" alt="STUDIO 36 CHAMBERZ スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-chamberz.png" alt="STUDIO 36 CHAMBERZ">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>STUDIO 36 CHAMBERZ</h3>
+            <p>WPテーマTCDを利用して作成したWEBサイト。</p>
+            <div class="tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://soilworks-jpn.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/sw-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/sw-pc.png" alt="Soil Works スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-sw.svg" alt="Soil Works">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Soil Works</h3>
+            <p>アニメーションを多用した新潟県南魚沼市の制作レーベルのコーポレートサイト</p>
+            <div class="tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PHP</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://shukakusai.net/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/shukakusai-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/shukakusai-pc.webp" alt="収穫祭 スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-shukakusai.webp" alt="収穫祭">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>収穫祭</h3>
+            <p>トップページアニメーションを担当</p>
+            <div class="tags">
+              <span class="tag">Studio</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://sa.soilworks-jpn.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/sa-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/sa-pc.webp" alt="SNOW AROUND スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-sa.webp" alt="SNOW AROUND">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>SNOW AROUND</h3>
+            <p>雪国文化と地場産品をビジュアルで表現した地域プロモーションサイト</p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://iiyama.soilworks-jpn.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/iiyama-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/iiyama-pc.webp" alt="信越自然郷PRサイト スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-iiyama.webp" alt="信越自然郷PRサイト">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>信越自然郷PRサイト</h3>
+            <p>信越自然郷エリアの冬の楽しみ方を紹介したPRサイト。英語対応有り。</p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://xii-collectivelab.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/xii-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/xii-pc.webp" alt="XII AFTER HOURS COLLECTIVE LAB スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-xii.svg" alt="XII AFTER HOURS COLLECTIVE LAB">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>XII AFTER HOURS COLLECTIVE LAB</h3>
+            <p>川崎拠点のダンス育成スクール。専門講師による少人数制指導で、中学生を対象にパフォーマンス技術を磨く。</p>
+            <div class="tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PHP</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://breaking-academy.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/ba-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/ba-pc.webp" alt="BREAKING ACADEMY スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-ba.svg" alt="BREAKING ACADEMY">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>BREAKING ACADEMY</h3>
+            <p>ブレイキン専門のアカデミー。川崎拠点で専門講師から本格的な技術を学べる。</p>
+            <div class="tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PHP</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card fade-in" href="https://cypher-code-japan.com/" target="_blank">
+          <div class="project-thumb">
+            <picture>
+              <source srcset="./images/pages/cc-sp.webp" media="(max-width: 640px)">
+              <img src="./images/pages/cc-pc.webp" alt="Cyphercode スクリーンショット"
+                  onerror="this.style.display='none'">
+            </picture>
+            <div class="project-logo">
+              <img src="./images/ic-cc.svg" alt="Cyphercode">
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Cyphercode</h3>
+            <p>ダンスカルチャー発のストリートアパレルブランド。パーカーやTシャツなど幅広いアイテムを展開するECサイト。</p>
+            <div class="tags">
+              <span class="tag">Shopify</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Liquid</span>
+            </div>
+          </div>
+        </a>
+        
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>自己紹介</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-avatar-wrap fade-in">
+          <div class="about-avatar">🧑‍💻</div>
+        </div>
+        <div class="about-text fade-in">
+          <p>東京在住のフロントエンドエンジニアです。
+             Web の面白さに魅了され、学生時代から個人開発を続けています。</p>
+          <p>ユーザー体験を大切にした UI 設計と、
+             保守性の高いクリーンなコードを心がけています。
+             趣味は読書・写真・コーヒー☕</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <h3>3+</h3>
+              <p>年の経験</p>
+            </div>
+            <div class="stat-item">
+              <h3>20+</h3>
+              <p>プロジェクト</p>
+            </div>
+            <div class="stat-item">
+              <h3>10+</h3>
+              <p>クライアント</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>連絡先</h2>
+      </div>
+      <div class="contact-card fade-in">
+        <h3 class="gradient-text" style="font-size:1.5rem;">お気軽にご連絡ください</h3>
+        <p>仕事の依頼・コラボレーション・雑談、なんでもどうぞ。<br>
+           通常 24 時間以内に返信します。</p>
+        <a href="mailto:yk.6.3.7.sk@gmail.com" class="btn btn-primary">メールを送る ✉</a>
+        <div class="social-links">
+          <a class="social-link" href="https://github.com/" target="_blank" title="GitHub">🐙</a>
+          <a class="social-link" href="https://twitter.com/" target="_blank" title="Twitter/X">🐦</a>
+          <a class="social-link" href="https://linkedin.com/" target="_blank" title="LinkedIn">💼</a>
+          <a class="social-link" href="https://zenn.dev/" target="_blank" title="Zenn">📝</a>
+          <a class="social-link" href="ig" target="_blank" title="instgram">📝</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2026 Yuki Seki. Built with ❤️ and plain HTML/CSS/JS.</p>
+  </footer>
+
+  <!-- ── Scroll Animations ── -->
+  <script>
+  /* ── スクロールプレビュー ── */
+  document.querySelectorAll('.project-thumb').forEach(thumb => {
+    const img = thumb.querySelector('img');
+    if (!img) return;
+
+    let scrollTimer = null;
+
+    function attachScroll() {
+      thumb.addEventListener('mouseenter', () => {
+        const containerH = thumb.clientHeight;
+        const imgH       = img.offsetHeight;
+        const dist       = Math.max(0, imgH - containerH);
+        if (dist < 20) return; // スクロール量が少なければ何もしない
+
+        // スクロール速度: 1px = 10ms（最短 1.5s / 最長 6s）
+        // const dur = Math.min(6, Math.max(1.5, dist / 100));
+        const dur = dist / 150;
+
+        // 0.4s 止まってからスクロール開始
+        scrollTimer = setTimeout(() => {
+          img.style.transition = `transform ${dur}s linear`;
+          img.style.transform  = `translateY(-${dist}px)`;
+        }, 400);
+      });
+
+      thumb.addEventListener('mouseleave', () => {
+        clearTimeout(scrollTimer);
+        img.style.transition = 'transform 0.5s ease';
+        img.style.transform  = 'translateY(0)';
+      });
+    }
+
+    // 画像ロード済みなら即セット、未ロードなら load 後にセット
+    if (img.complete && img.naturalHeight > 0) {
+      attachScroll();
+    } else {
+      img.addEventListener('load', attachScroll);
+    }
+  });
+
+  /* ── フェードイン ── */
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
