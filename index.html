@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
   <title>Yuki Seki | Portfolio</title>
   <style>
     /* ─── Reset & Base ─── */
@@ -141,7 +142,13 @@
       color: var(--clr-accent);
       transform: translateY(-2px);
     }
-
+    .btn-contact-wrap{
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
     .hero-blob {
       position: absolute;
       top: 10%; right: 5%;
@@ -242,6 +249,9 @@
       height: auto;
       object-fit: contain;
       border-radius: 4px;
+    }
+    .project-logo.bg-white{
+      background-color: #FFF;
     }
 
     /* ── カード本文エリア ── */
@@ -350,6 +360,9 @@
       .about-grid { grid-template-columns: 1fr; }
       .about-avatar { width: 140px; }
       .nav-links { display: none; }
+      .contact-card{
+        padding: 2rem 1rem;
+      }
     }
   </style>
 </head>
@@ -358,7 +371,7 @@
   <!-- ── Navigation ── -->
   <nav>
     <div class="container nav-inner">
-      <a href="#hero" class="nav-logo gradient-text">YN</a>
+      <a href="#hero" class="nav-logo gradient-text">Yuki Seki's Portfolio</a>
       <ul class="nav-links">
         <li><a href="#skills">スキル</a></li>
         <li><a href="#projects">制作物</a></li>
@@ -396,6 +409,7 @@
         <div class="skill-card fade-in"><div class="skill-icon">✨</div>JavaScript</div>
         <div class="skill-card fade-in"><div class="skill-icon">🖥️</div>PHP</div>
         <div class="skill-card fade-in"><div class="skill-icon">🐍</div>WordPress</div>
+        <div class="skill-card fade-in"><div class="skill-icon">🦎</div>Shopify</div>
         <div class="skill-card fade-in"><div class="skill-icon">🗄️</div>SQL</div>
         <div class="skill-card fade-in"><div class="skill-icon">🐙</div>Git</div>
       </div>
@@ -440,7 +454,7 @@
               <img src="./images/pages/hcp-pc.png" alt="HCP スクリーンショット"
                   onerror="this.style.display='none'">
             </picture>
-            <div class="project-logo">
+            <div class="project-logo bg-white">
               <img src="./images/ic-hcp.png" alt="HCP">
             </div>
           </div>
@@ -595,8 +609,8 @@
         <a class="project-card fade-in" href="https://xii-collectivelab.com/" target="_blank">
           <div class="project-thumb">
             <picture>
-              <source srcset="./images/pages/xii-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/xii-pc.webp" alt="XII AFTER HOURS COLLECTIVE LAB スクリーンショット"
+              <source srcset="./images/pages/xii-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/xii-pc.png" alt="XII AFTER HOURS COLLECTIVE LAB スクリーンショット"
                   onerror="this.style.display='none'">
             </picture>
             <div class="project-logo">
@@ -619,8 +633,8 @@
         <a class="project-card fade-in" href="https://breaking-academy.com/" target="_blank">
           <div class="project-thumb">
             <picture>
-              <source srcset="./images/pages/ba-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/ba-pc.webp" alt="BREAKING ACADEMY スクリーンショット"
+              <source srcset="./images/pages/ba-sp.png" media="(max-width: 640px)">
+              <img src="./images/pages/ba-pc.png" alt="BREAKING ACADEMY スクリーンショット"
                   onerror="this.style.display='none'">
             </picture>
             <div class="project-logo">
@@ -647,8 +661,8 @@
               <img src="./images/pages/cc-pc.webp" alt="Cyphercode スクリーンショット"
                   onerror="this.style.display='none'">
             </picture>
-            <div class="project-logo">
-              <img src="./images/ic-cc.svg" alt="Cyphercode">
+            <div class="project-logo bg-white">
+              <img src="./images/ic-cc.png" alt="Cyphercode">
             </div>
           </div>
           <div class="project-body">
@@ -680,14 +694,12 @@
           <div class="about-avatar">🧑‍💻</div>
         </div>
         <div class="about-text fade-in">
-          <p>東京在住のフロントエンドエンジニアです。
-             Web の面白さに魅了され、学生時代から個人開発を続けています。</p>
-          <p>ユーザー体験を大切にした UI 設計と、
-             保守性の高いクリーンなコードを心がけています。
-             趣味は読書・写真・コーヒー☕</p>
+          <p>2011年より専修大学ネットワーク情報学部にて、プログラミングやAdobeソフトを用いた制作、データベース構築などの基礎を習得するとともに、チームでのWebシステム開発を通じて実践的な開発プロセスを学びました。</p>
+          <p>2015年から2026年まで株式会社ネイティブキャンプ制作部にて、フロントエンドエンジニア／ブリッジエンジニアとして従事。英語を用いたコミュニケーションにより、海外エンジニアとの連携にも対応しています。HTML / CSS / JavaScript / PHPを用いた開発を中心に、WordPressやShopifyの構築・カスタマイズまで幅広く手がけています。</p>
+          <p>デザインの再現性に加え、ユーザビリティや保守性を考慮した実装を得意とし、長期的な運用を見据えた設計に強みがあります。チーム開発では、Gitを用いたバージョン管理やDocker / Vagrantによる開発環境構築にも対応しています。</p>
           <div class="about-stats">
             <div class="stat-item">
-              <h3>3+</h3>
+              <h3>11+</h3>
               <p>年の経験</p>
             </div>
             <div class="stat-item">
@@ -695,7 +707,7 @@
               <p>プロジェクト</p>
             </div>
             <div class="stat-item">
-              <h3>10+</h3>
+              <h3>3+</h3>
               <p>クライアント</p>
             </div>
           </div>
@@ -714,13 +726,9 @@
         <h3 class="gradient-text" style="font-size:1.5rem;">お気軽にご連絡ください</h3>
         <p>仕事の依頼・コラボレーション・雑談、なんでもどうぞ。<br>
            通常 24 時間以内に返信します。</p>
-        <a href="mailto:yk.6.3.7.sk@gmail.com" class="btn btn-primary">メールを送る ✉</a>
-        <div class="social-links">
-          <a class="social-link" href="https://github.com/" target="_blank" title="GitHub">🐙</a>
-          <a class="social-link" href="https://twitter.com/" target="_blank" title="Twitter/X">🐦</a>
-          <a class="social-link" href="https://linkedin.com/" target="_blank" title="LinkedIn">💼</a>
-          <a class="social-link" href="https://zenn.dev/" target="_blank" title="Zenn">📝</a>
-          <a class="social-link" href="ig" target="_blank" title="instgram">📝</a>
+        <div class="btn-contact-wrap">
+          <a href="mailto:yk.6.3.7.sk@gmail.com" class="btn btn-primary">メールを送る ✉</a>
+          <a href="https://www.instagram.com/_yukiseki_/" class="btn btn-primary">InstagramからDM</a>
         </div>
       </div>
     </div>
@@ -781,6 +789,16 @@
     { threshold: 0.1 }
   );
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // project count
+  const projectCount = document.querySelectorAll('.project-card').length;
+
+  document.querySelectorAll('.stat-item').forEach(item => {
+    const label = item.querySelector('p');
+    if (label && label.textContent.trim() === 'プロジェクト') {
+      item.querySelector('h3').textContent = projectCount + '+';
+    }
+  });
   </script>
 
 </body>
