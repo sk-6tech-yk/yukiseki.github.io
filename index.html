@@ -364,6 +364,139 @@
         padding: 2rem 1rem;
       }
     }
+
+    /* ─── Project Modal ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .modal-overlay.open.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+    /* 左カラム：画像 */
+    .modal-thumb {
+      width: 52%;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e1b3a 0%, #12293a 100%);
+      border-radius: 16px 0 0 16px;
+      position: relative;
+      overflow: scroll;
+    }
+    .modal-thumb img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+    .modal-logo {
+      position: sticky;
+      bottom: 12px;
+      left: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(15, 15, 19, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-logo.bg-white { background-color: #fff; }
+    .modal-logo img { width: 100%; height: auto; object-fit: contain; border-radius: 4px; }
+    /* 右カラム：説明 */
+    .modal-body {
+      flex: 1;
+      padding: 2.4rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 320px;
+    }
+    .modal-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .modal-body .modal-desc {
+      color: var(--clr-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.7;
+    }
+    .modal-body .tags { margin-bottom: 1.8rem; }
+    .modal-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--clr-border);
+      background: rgba(15,15,19,0.7);
+      backdrop-filter: blur(4px);
+      color: var(--clr-text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      z-index: 10;
+    }
+    .modal-close:hover {
+      border-color: var(--clr-accent);
+      color: var(--clr-accent);
+    }
+    .project-card { cursor: pointer; }
+    /* スマホは縦積みに戻す */
+    @media (max-width: 640px) {
+      .modal { flex-direction: column; }
+      .modal-thumb {
+        width: 100%;
+        height: 200px;
+        border-radius: 16px 16px 0 0;
+      }
+      .modal-body { padding: 1.5rem 1.2rem; min-height: unset; }
+    }
   </style>
 </head>
 <body>
@@ -424,7 +557,15 @@
       </div>
       <div class="projects-grid">
 
-        <a class="project-card fade-in" href="https://golden-mission.jp/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://golden-mission.jp/"
+          data-title="GOLDEN MISSION"
+          data-desc="Shopifyテーマを活用し、プロテイン販売に適したレイアウトに作成したECサイトです。"
+          data-tags="Shopify,HTML,CSS,Liquid"
+          data-img-pc="./images/pages/gm-pc.png"
+          data-img-sp="./images/pages/gm-sp.png"
+          data-logo="./images/ic-gm.avif"
+          data-logo-alt="GOLDEN MISSION">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/gm-sp.png" media="(max-width: 640px)">
@@ -445,9 +586,18 @@
               <span class="tag">Liquid</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://hcp-inc.jp/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://hcp-inc.jp/"
+          data-title="HCP"
+          data-desc="必要なものだけを残し、シンプルに設計したコーポレートサイト"
+          data-tags="HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/hcp-pc.png"
+          data-img-sp="./images/pages/hcp-sp.png"
+          data-logo="./images/ic-hcp.png"
+          data-logo-alt="HCP"
+          data-logo-class="bg-white">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/hcp-sp.png" media="(max-width: 640px)">
@@ -467,9 +617,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://studio-bars.jp/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://studio-bars.jp/"
+          data-title="BARS DANCE STUDIO"
+          data-desc="お客様に必要な情報を見やすいようにまとめたダンススタジオのWEBサイト。"
+          data-tags="WordPress,HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/bars-pc.png"
+          data-img-sp="./images/pages/bars-sp.png"
+          data-logo="./images/ic-bars.svg"
+          data-logo-alt="BARS DANCE STUDIO">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/bars-sp.png" media="(max-width: 640px)">
@@ -490,9 +648,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://36chamberz.jp/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://36chamberz.jp/"
+          data-title="STUDIO 36 CHAMBERZ"
+          data-desc="WPテーマTCDを利用して作成したWEBサイト。|撮影ディレクションとレイアウト構築、実装を担当。|管理画面から全てのコンテンツを調整できるよう作成しています。"
+          data-tags="WordPress,HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/chamberz-pc.png"
+          data-img-sp="./images/pages/chamberz-sp.png"
+          data-logo="./images/ic-chamberz.png"
+          data-logo-alt="STUDIO 36 CHAMBERZ">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/chamberz-sp.png" media="(max-width: 640px)">
@@ -513,9 +679,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://soilworks-jpn.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://soilworks-jpn.com/"
+          data-title="Soil Works"
+          data-desc="アニメーションを多用した新潟県南魚沼市の制作レーベルのコーポレートサイト"
+          data-tags="WordPress,HTML,CSS,JavaScript,PHP"
+          data-img-pc="./images/pages/sw-pc.png"
+          data-img-sp="./images/pages/sw-sp.png"
+          data-logo="./images/ic-sw.svg"
+          data-logo-alt="Soil Works">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/sw-sp.png" media="(max-width: 640px)">
@@ -537,9 +711,17 @@
               <span class="tag">PHP</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://shukakusai.net/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://shukakusai.net/"
+          data-title="収穫祭"
+          data-desc="トップページアニメーションを担当"
+          data-tags="Studio,HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/shukakusai-pc.webp"
+          data-img-sp="./images/pages/shukakusai-sp.webp"
+          data-logo="./images/ic-shukakusai.webp"
+          data-logo-alt="収穫祭">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/shukakusai-sp.webp" media="(max-width: 640px)">
@@ -560,9 +742,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://sa.soilworks-jpn.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://sa.soilworks-jpn.com/"
+          data-title="SNOW AROUND"
+          data-desc="雪国文化と地場産品をビジュアルで表現した地域プロモーションサイト"
+          data-tags="HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/sa-pc.webp"
+          data-img-sp="./images/pages/sa-sp.webp"
+          data-logo="./images/ic-sa.webp"
+          data-logo-alt="SNOW AROUND">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/sa-sp.webp" media="(max-width: 640px)">
@@ -582,9 +772,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://iiyama.soilworks-jpn.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://iiyama.soilworks-jpn.com/"
+          data-title="信越自然郷PRサイト"
+          data-desc="信越自然郷エリアの冬の楽しみ方を紹介したPRサイト。英語対応有り。"
+          data-tags="HTML,CSS,JavaScript"
+          data-img-pc="./images/pages/iiyama-pc.webp"
+          data-img-sp="./images/pages/iiyama-sp.webp"
+          data-logo="./images/ic-iiyama.webp"
+          data-logo-alt="信越自然郷PRサイト">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/iiyama-sp.webp" media="(max-width: 640px)">
@@ -604,9 +802,17 @@
               <span class="tag">JavaScript</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://xii-collectivelab.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://xii-collectivelab.com/"
+          data-title="XII AFTER HOURS COLLECTIVE LAB"
+          data-desc="川崎拠点のダンス育成スクール。専門講師による少人数制指導で、中学生を対象にパフォーマンス技術を磨く。"
+          data-tags="WordPress,HTML,CSS,JavaScript,PHP"
+          data-img-pc="./images/pages/xii-pc.png"
+          data-img-sp="./images/pages/xii-sp.png"
+          data-logo="./images/ic-xii.svg"
+          data-logo-alt="XII AFTER HOURS COLLECTIVE LAB">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/xii-sp.png" media="(max-width: 640px)">
@@ -628,9 +834,17 @@
               <span class="tag">PHP</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://breaking-academy.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://breaking-academy.com/"
+          data-title="BREAKING ACADEMY"
+          data-desc="ブレイキン専門のアカデミー。川崎拠点で専門講師から本格的な技術を学べる。"
+          data-tags="WordPress,HTML,CSS,JavaScript,PHP"
+          data-img-pc="./images/pages/ba-pc.png"
+          data-img-sp="./images/pages/ba-sp.png"
+          data-logo="./images/ic-ba.svg"
+          data-logo-alt="BREAKING ACADEMY">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/ba-sp.png" media="(max-width: 640px)">
@@ -652,9 +866,18 @@
               <span class="tag">PHP</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <a class="project-card fade-in" href="https://cypher-code-japan.com/" target="_blank">
+        <div class="project-card fade-in"
+          data-url="https://cypher-code-japan.com/"
+          data-title="Cyphercode"
+          data-desc="ダンスカルチャー発のストリートアパレルブランド。パーカーやTシャツなど幅広いアイテムを展開するECサイト。"
+          data-tags="Shopify,HTML,CSS,JavaScript,Liquid"
+          data-img-pc="./images/pages/cc-pc.webp"
+          data-img-sp="./images/pages/cc-sp.webp"
+          data-logo="./images/ic-cc.png"
+          data-logo-alt="Cyphercode"
+          data-logo-class="bg-white">
           <div class="project-thumb">
             <picture>
               <source srcset="./images/pages/cc-sp.webp" media="(max-width: 640px)">
@@ -676,7 +899,7 @@
               <span class="tag">Liquid</span>
             </div>
           </div>
-        </a>
+        </div>
         
 
       </div>
@@ -733,6 +956,28 @@
       </div>
     </div>
   </section>
+
+  <!-- ── Project Modal ── -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="閉じる">✕</button>
+      <div class="modal-thumb">
+        <img id="modalImg" src="" alt="">
+        <div class="modal-logo" id="modalLogo">
+          <img id="modalLogoImg" src="" alt="">
+        </div>
+      </div>
+      <div class="modal-body">
+        <h3 id="modalTitle" class="gradient-text"></h3>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="tags" id="modalTags"></div>
+        <div class="modal-actions">
+          <a id="modalLink" href="#" target="_blank" rel="noopener" class="btn btn-primary">サイトを見る →</a>
+          <button class="btn btn-outline" id="modalCloseBtn">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Footer ── -->
   <footer>
@@ -799,6 +1044,73 @@
       item.querySelector('h3').textContent = projectCount + '+';
     }
   });
+  /* ── Project Modal ── */
+  (function() {
+    const overlay  = document.getElementById('projectModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalLogo    = document.getElementById('modalLogo');
+    const modalLogoImg = document.getElementById('modalLogoImg');
+    const modalTitle   = document.getElementById('modalTitle');
+    const modalDesc    = document.getElementById('modalDesc');
+    const modalTags    = document.getElementById('modalTags');
+    const modalLink    = document.getElementById('modalLink');
+
+    function openModal(card) {
+      const isMobile = window.innerWidth <= 640;
+      const imgSrc = isMobile
+        ? (card.dataset.imgSp || card.dataset.imgPc)
+        : card.dataset.imgPc;
+
+      modalImg.src = imgSrc || '';
+      modalImg.alt = card.dataset.title + ' スクリーンショット';
+
+      modalLogoImg.src = card.dataset.logo || '';
+      modalLogoImg.alt = card.dataset.logoAlt || '';
+      modalLogo.className = 'modal-logo' + (card.dataset.logoClass ? ' ' + card.dataset.logoClass : '');
+
+      modalTitle.textContent = card.dataset.title || '';
+      modalDesc.textContent  = card.dataset.desc  || '';
+      modalDesc.innerHTML = (card.dataset.desc || '')
+        .split('|')
+        .map(s => `<p>${s.trim()}</p>`)
+        .join('');
+      modalLink.href         = card.dataset.url   || '#';
+
+      modalTags.innerHTML = (card.dataset.tags || '')
+        .split(',')
+        .map(t => `<span class="tag">${t.trim()}</span>`)
+        .join('');
+
+      overlay.classList.add('open');
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('visible');
+      setTimeout(() => overlay.classList.remove('open'), 300);
+      document.body.style.overflow = '';
+    }
+
+    // カードクリックでモーダルを開く
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+
+    // 閉じるボタン
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+
+    // オーバーレイ背景クリックで閉じる
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // Escキーで閉じる
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  })();
   </script>
 
 </body>
