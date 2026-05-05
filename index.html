@@ -292,8 +292,13 @@
       align-items: center;
       justify-content: center;
       font-size: 5rem;
+	  overflow: hidden;
     }
-    .about-text p { color: var(--clr-muted); margin-bottom: 1rem; }
+    .about-avatar .thumb {
+	  object-fit: cover;
+	  height: 100%;
+	}
+    .about-text p { color: #ebebeb; margin-bottom: 1rem; }
     .about-stats {
       display: flex;
       gap: 2rem;
@@ -423,9 +428,10 @@
       display: block;
     }
     .modal-logo {
-      position: sticky;
+      position: absolute;
       bottom: 12px;
       left: 14px;
+      z-index: 10;
       width: 48px;
       height: 48px;
       border-radius: 10px;
@@ -496,6 +502,10 @@
         border-radius: 16px 16px 0 0;
       }
       .modal-body { padding: 1.5rem 1.2rem; min-height: unset; }
+      .modal-logo {
+        bottom: auto;
+        top: calc(40vh - 48px - 12px);
+      }
     }
   </style>
 </head>
@@ -566,16 +576,7 @@
           data-img-sp="./images/pages/gm-sp.png"
           data-logo="./images/ic-gm.avif"
           data-logo-alt="GOLDEN MISSION">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/gm-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/gm-pc.png" alt="GOLDEN MISSION スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-gm.avif" alt="GOLDEN MISSION">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>GOLDEN MISSION</h3>
             <p>Shopifyテーマを活用し、プロテイン販売に適したレイアウトに作成したECサイトです。</p>
@@ -598,16 +599,7 @@
           data-logo="./images/ic-hcp.png"
           data-logo-alt="HCP"
           data-logo-class="bg-white">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/hcp-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/hcp-pc.png" alt="HCP スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo bg-white">
-              <img src="./images/ic-hcp.png" alt="HCP">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>HCP</h3>
             <p>必要なものだけを残し、シンプルに設計したコーポレートサイト</p>
@@ -628,16 +620,7 @@
           data-img-sp="./images/pages/bars-sp.png"
           data-logo="./images/ic-bars.svg"
           data-logo-alt="BARS DANCE STUDIO">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/bars-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/bars-pc.png" alt="BARS DANCE STUDIO スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-bars.svg" alt="BARS DANCE STUDIO">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>BARS DANCE STUDIO</h3>
             <p>お客様に必要な情報を見やすいようにまとめたダンススタジオのWEBサイト。</p>
@@ -659,16 +642,7 @@
           data-img-sp="./images/pages/chamberz-sp.png"
           data-logo="./images/ic-chamberz.png"
           data-logo-alt="STUDIO 36 CHAMBERZ">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/chamberz-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/chamberz-pc.png" alt="STUDIO 36 CHAMBERZ スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-chamberz.png" alt="STUDIO 36 CHAMBERZ">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>STUDIO 36 CHAMBERZ</h3>
             <p>WPテーマTCDを利用して作成したWEBサイト。</p>
@@ -690,16 +664,7 @@
           data-img-sp="./images/pages/sw-sp.png"
           data-logo="./images/ic-sw.svg"
           data-logo-alt="Soil Works">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/sw-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/sw-pc.png" alt="Soil Works スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-sw.svg" alt="Soil Works">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>Soil Works</h3>
             <p>アニメーションを多用した新潟県南魚沼市の制作レーベルのコーポレートサイト</p>
@@ -722,16 +687,7 @@
           data-img-sp="./images/pages/shukakusai-sp.webp"
           data-logo="./images/ic-shukakusai.webp"
           data-logo-alt="収穫祭">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/shukakusai-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/shukakusai-pc.webp" alt="収穫祭 スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-shukakusai.webp" alt="収穫祭">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>収穫祭</h3>
             <p>トップページアニメーションを担当</p>
@@ -753,16 +709,7 @@
           data-img-sp="./images/pages/sa-sp.webp"
           data-logo="./images/ic-sa.webp"
           data-logo-alt="SNOW AROUND">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/sa-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/sa-pc.webp" alt="SNOW AROUND スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-sa.webp" alt="SNOW AROUND">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>SNOW AROUND</h3>
             <p>雪国文化と地場産品をビジュアルで表現した地域プロモーションサイト</p>
@@ -783,16 +730,7 @@
           data-img-sp="./images/pages/iiyama-sp.webp"
           data-logo="./images/ic-iiyama.webp"
           data-logo-alt="信越自然郷PRサイト">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/iiyama-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/iiyama-pc.webp" alt="信越自然郷PRサイト スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-iiyama.webp" alt="信越自然郷PRサイト">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>信越自然郷PRサイト</h3>
             <p>信越自然郷エリアの冬の楽しみ方を紹介したPRサイト。英語対応有り。</p>
@@ -800,6 +738,29 @@
               <span class="tag">HTML</span>
               <span class="tag">CSS</span>
               <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+		<div class="project-card fade-in"
+          data-url="https://hanaya.ltd/"
+          data-title="hanaya"
+          data-desc="新潟県南魚沼にて活動している雪国の農家さんのホームページ。"
+          data-tags="HTML,CSS,JavaScript,WordPress,PHP"
+          data-img-pc="./images/pages/hanaya-pc.webp"
+          data-img-sp="./images/pages/hanaya-sp.webp"
+          data-logo="./images/ic-hanaya.svg"
+          data-logo-alt="hanaya">
+          <div class="project-thumb"></div>
+          <div class="project-body">
+            <h3>hanaya</h3>
+            <p>新潟県南魚沼にて活動している雪国の農家さんのホームページ。</p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">WordPress</span>
+              <span class="tag">PHP</span>
             </div>
           </div>
         </div>
@@ -813,16 +774,7 @@
           data-img-sp="./images/pages/xii-sp.png"
           data-logo="./images/ic-xii.svg"
           data-logo-alt="XII AFTER HOURS COLLECTIVE LAB">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/xii-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/xii-pc.png" alt="XII AFTER HOURS COLLECTIVE LAB スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-xii.svg" alt="XII AFTER HOURS COLLECTIVE LAB">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>XII AFTER HOURS COLLECTIVE LAB</h3>
             <p>川崎拠点のダンス育成スクール。専門講師による少人数制指導で、中学生を対象にパフォーマンス技術を磨く。</p>
@@ -845,16 +797,7 @@
           data-img-sp="./images/pages/ba-sp.png"
           data-logo="./images/ic-ba.svg"
           data-logo-alt="BREAKING ACADEMY">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/ba-sp.png" media="(max-width: 640px)">
-              <img src="./images/pages/ba-pc.png" alt="BREAKING ACADEMY スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo">
-              <img src="./images/ic-ba.svg" alt="BREAKING ACADEMY">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>BREAKING ACADEMY</h3>
             <p>ブレイキン専門のアカデミー。川崎拠点で専門講師から本格的な技術を学べる。</p>
@@ -878,16 +821,7 @@
           data-logo="./images/ic-cc.png"
           data-logo-alt="Cyphercode"
           data-logo-class="bg-white">
-          <div class="project-thumb">
-            <picture>
-              <source srcset="./images/pages/cc-sp.webp" media="(max-width: 640px)">
-              <img src="./images/pages/cc-pc.webp" alt="Cyphercode スクリーンショット"
-                  onerror="this.style.display='none'">
-            </picture>
-            <div class="project-logo bg-white">
-              <img src="./images/ic-cc.png" alt="Cyphercode">
-            </div>
-          </div>
+          <div class="project-thumb"></div>
           <div class="project-body">
             <h3>Cyphercode</h3>
             <p>ダンスカルチャー発のストリートアパレルブランド。パーカーやTシャツなど幅広いアイテムを展開するECサイト。</p>
@@ -897,6 +831,50 @@
               <span class="tag">CSS</span>
               <span class="tag">JavaScript</span>
               <span class="tag">Liquid</span>
+            </div>
+          </div>
+        </div>
+
+		<div class="project-card fade-in"
+          data-url="https://nukspace.jp/"
+          data-title="Nük space"
+          data-desc="リフレクソロジーサロン「Nük space」のWebサイト。Studioでの制作のため、納品後もクライアント様側で微調整が可能。"
+          data-tags="Studio,HTML,CSS"
+          data-img-pc="./images/pages/nuk-pc.webp"
+          data-img-sp="./images/pages/nuk-sp.webp"
+          data-logo="./images/ic-nuk.jpg"
+          data-logo-alt="Nük space"
+          data-logo-class="bg-white">
+          <div class="project-thumb"></div>
+          <div class="project-body">
+            <h3>Nük space</h3>
+            <p>リフレクソロジーサロン「Nük space」のWebサイト。Studioでの制作のため、納品後もクライアント様側で微調整が可能。</p>
+            <div class="tags">
+              <span class="tag">Studio</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+        </div>
+
+		<div class="project-card fade-in"
+          data-url="https://gakutsukada.com/"
+          data-title="Gaku Tsukada"
+          data-desc="デザイナー・塚田岳のポートフォリオサイト。WordPressをフルカスタムで構築し、作品の世界観を損なわないミニマルな作りに仕上げました。"
+          data-tags="Studio,HTML,CSS"
+          data-img-pc="./images/pages/gaku-tsukada-pc.webp"
+          data-img-sp="./images/pages/gaku-tsukada-sp.webp"
+          data-logo="./images/ic-gaku-tsukada.jpg"
+          data-logo-alt="Gaku Tsukada"
+          data-logo-class="bg-white">
+          <div class="project-thumb"></div>
+          <div class="project-body">
+            <h3>Gaku Tsukada</h3>
+            <p>デザイナー・塚田岳のポートフォリオサイト。WordPressをフルカスタムで構築し、作品の世界観を損なわないミニマルな作りに仕上げました。</p>
+            <div class="tags">
+              <span class="tag">Studio</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
             </div>
           </div>
         </div>
@@ -914,12 +892,16 @@
       </div>
       <div class="about-grid">
         <div class="about-avatar-wrap fade-in">
-          <div class="about-avatar">🧑‍💻</div>
+          <div class="about-avatar">
+			<img src="./images/yukiseki.webp" alt="Yuki Seki" class="thumb">
+		  </div>
         </div>
         <div class="about-text fade-in">
+		  <p>はじめまして。関佑貴と申します。</p>
           <p>2011年より専修大学ネットワーク情報学部にて、プログラミングやAdobeソフトを用いた制作、データベース構築などの基礎を習得するとともに、チームでのWebシステム開発を通じて実践的な開発プロセスを学びました。</p>
           <p>2015年から2026年まで株式会社ネイティブキャンプ制作部にて、フロントエンドエンジニア／ブリッジエンジニアとして従事。英語を用いたコミュニケーションにより、海外エンジニアとの連携にも対応しています。HTML / CSS / JavaScript / PHPを用いた開発を中心に、WordPressやShopifyの構築・カスタマイズまで幅広く手がけています。</p>
           <p>デザインの再現性に加え、ユーザビリティや保守性を考慮した実装を得意とし、長期的な運用を見据えた設計に強みがあります。チーム開発では、Gitを用いたバージョン管理やDocker / Vagrantによる開発環境構築にも対応しています。</p>
+		  <p>何か私にお手伝いできることがありましたらお気軽にご連絡ください。何卒！</p>
           <div class="about-stats">
             <div class="stat-item">
               <h3>11+</h3>
@@ -930,7 +912,7 @@
               <p>プロジェクト</p>
             </div>
             <div class="stat-item">
-              <h3>3+</h3>
+              <h3>5+</h3>
               <p>クライアント</p>
             </div>
           </div>
@@ -963,9 +945,9 @@
       <button class="modal-close" id="modalClose" aria-label="閉じる">✕</button>
       <div class="modal-thumb">
         <img id="modalImg" src="" alt="">
-        <div class="modal-logo" id="modalLogo">
-          <img id="modalLogoImg" src="" alt="">
-        </div>
+      </div>
+      <div class="modal-logo" id="modalLogo">
+        <img id="modalLogoImg" src="" alt="">
       </div>
       <div class="modal-body">
         <h3 id="modalTitle" class="gradient-text"></h3>
@@ -986,6 +968,45 @@
 
   <!-- ── Scroll Animations ── -->
   <script>
+  /* ── project-thumb を data属性から動的生成 ── */
+  document.querySelectorAll('.project-card').forEach(card => {
+    const thumb      = card.querySelector('.project-thumb');
+    if (!thumb) return;
+
+    const imgPc      = card.dataset.imgPc   || '';
+    const imgSp      = card.dataset.imgSp   || '';
+    const logo       = card.dataset.logo    || '';
+    const logoAlt    = card.dataset.logoAlt || '';
+    const logoClass  = card.dataset.logoClass ? ' ' + card.dataset.logoClass : '';
+    const title      = card.dataset.title   || '';
+
+    // <picture> 生成
+    const picture = document.createElement('picture');
+    if (imgSp) {
+      const source = document.createElement('source');
+      source.srcset = imgSp;
+      source.media  = '(max-width: 640px)';
+      picture.appendChild(source);
+    }
+    const img = document.createElement('img');
+    img.src   = imgPc;
+    img.alt   = title + ' スクリーンショット';
+    img.onerror = function() { this.style.display = 'none'; };
+    picture.appendChild(img);
+    thumb.appendChild(picture);
+
+    // .project-logo 生成
+    if (logo) {
+      const logoDiv = document.createElement('div');
+      logoDiv.className = 'project-logo' + logoClass;
+      const logoImg = document.createElement('img');
+      logoImg.src = logo;
+      logoImg.alt = logoAlt;
+      logoDiv.appendChild(logoImg);
+      thumb.appendChild(logoDiv);
+    }
+  });
+
   /* ── スクロールプレビュー ── */
   document.querySelectorAll('.project-thumb').forEach(thumb => {
     const img = thumb.querySelector('img');
